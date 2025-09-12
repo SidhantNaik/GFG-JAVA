@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Tic_Tac_To {
+class Tic_Tac_Toe {
     static String[] board = new String[9];
     static String winner = null, turn = "X";
 
@@ -47,34 +47,38 @@ class Tic_Tac_To {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to the Tic-Tac-To Game...\n");
+        System.out.println("Welcome to the Tic-Tac-Toe Game...\n");
 
-        while (winner == null) {
-
-            System.out.println("Enter the cell number to enter " + turn);
+        
+        while (true) {
+            System.out.println("Enter the cell number (1-9) to enter " + turn);
             int n = sc.nextInt();
 
-            if (board[n - 1].equals("X") || board[n - 1].equals("O")) {
-                System.out.println("The cell is already occupied one more time please,");
+            if (n < 1 || n > 9) {
+                System.out.println("Invalid move. Please enter a number between 1 and 9.");
                 continue;
-            } else
-                board[n - 1] = turn;
+            }
 
+            if (board[n - 1].equals("X") || board[n - 1].equals("O")) {
+                System.out.println("This cell is already occupied. Please try again.");
+                continue;
+            }
+            
+            board[n - 1] = turn;
             printBoard();
-            turn = turn.equals("X") ? "O" : "X";
             checkWinner();
             iteration++;
 
-            if (winner == null && iteration > 9) {
-                System.out.println("Match is draw");
-                return;
+            if (winner != null) {
+                System.out.println("\nGame Over! " + winner + " wins!");
+                break;
+            } else if (iteration > 9) {
+                System.out.println("\nGame Over! It's a draw!");
+                break;
+            } else {
+                turn = turn.equals("X") ? "O" : "X";
             }
         }
-
-        if (winner.equals("X"))
-            System.out.println("Winner is X");
-        else
-            System.out.println("Winner is O");
 
     }
 }
