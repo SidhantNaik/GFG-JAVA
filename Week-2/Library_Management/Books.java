@@ -80,4 +80,54 @@ public class Books {
             System.out.println("---------------------------");
         }
     }
+
+    // Function to update book quantity.
+    public void updateBookQty(){
+        System.out.println("Enter Serial Number of Book to update quantity:");
+        int serial = sc.nextInt();
+
+        for(int i=0; i<bookCount; i++){
+            if(bookList[i].serialNumber == serial){
+                System.out.println("Enter new quantity:");
+                int qty = sc.nextInt();
+                bookList[i].bookQty = qty;
+                System.out.println("Book Quantity Updated!");
+                return;
+            }
+        }
+        System.out.println("Book Not Found!");
+    }
+
+    // function to delete a book.
+    public void deleteBook(){
+        System.out.println("Enter Serial Number of Book to be deleted:");
+        int serial = sc.nextInt();
+
+        for(int i=0; i<bookCount; i++){
+            if(bookList[i].serialNumber == serial){
+                for(int j=i; j<bookCount-1; j++){
+                    bookList[j] = bookList[j+1];
+                }
+                bookList[bookCount-1] = null;
+                bookCount--;
+                System.out.println("Book Deleted!");
+                return;
+            }
+        }
+        System.out.println("Book Not Found!");
+    }
+
+
+    // Function to display menu options.
+    public void menuOptions(){
+        System.out.println("Library Management System");
+        System.out.println("1. Add New Book");
+        System.out.println("2. Search Book by Serial Number");
+        System.out.println("3. Search Book by Author Name");
+        System.out.println("4. Display All Books");
+        System.out.println("5. Update Book Quantity");
+        System.out.println("6. Delete Book");
+        System.out.println("7. Exit");
+        System.out.print("Enter your choice: ");
+    }
 }
