@@ -118,9 +118,11 @@ public class Books {
     }
 
 
+
     // Function to display menu options.
     public void menuOptions(){
         System.out.println("Library Management System");
+        System.out.println("--------------------------------");
         System.out.println("1. Add New Book");
         System.out.println("2. Search Book by Serial Number");
         System.out.println("3. Search Book by Author Name");
@@ -128,6 +130,57 @@ public class Books {
         System.out.println("5. Update Book Quantity");
         System.out.println("6. Delete Book");
         System.out.println("7. Exit");
-        System.out.print("Enter your choice: ");
+        System.out.println("--------------------------------");
+    }
+
+    //function
+
+     public int isAvailable(int sNo)
+    {
+
+        for (int i = 0; i < bookCount; i++) {
+            if (sNo == bookList[i].serialNumber) {
+                if (bookList[i].bookQtyCopy > 0) {
+
+                    System.out.println(
+                        "Book is Available.");
+                    return i;
+                }
+                System.out.println("Book is Unavailable");
+                return -1;
+            }
+        }
+
+        System.out.println("No Book of Serial Number "
+                           + " Available in Library.");
+        return -1;
+    }
+
+
+public Book checkOutBook()
+    {
+
+        System.out.println(
+            "Enter Serial No of Book to be Checked Out.");
+        int sNo = sc.nextInt();
+
+        int bookIndex = isAvailable(sNo);
+
+        if (bookIndex != -1) {
+            bookList[bookIndex].bookQtyCopy--;
+            return bookList[bookIndex];
+        }
+        return null;
+    }
+
+    // To add the Book to the Library
+    public void checkInBook(Book b)
+    {
+        for (int i = 0; i < bookCount; i++) {
+            if (b.equals(bookList[i])) {
+                bookList[i].bookQtyCopy++;
+                return;
+            }
+        }
     }
 }
