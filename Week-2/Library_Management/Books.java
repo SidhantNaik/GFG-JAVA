@@ -6,6 +6,20 @@ public class Books {
 
     Scanner sc = new Scanner(System.in);
 
+    // Function to display menu options
+    public void menuOptions() {
+        System.out.println("1. Add New Book");
+        System.out.println("2. Update Book Quantity");
+        System.out.println("3. Search Books");
+        System.out.println("4. Show All Books");
+        System.out.println("5. Register New Student");
+        System.out.println("6. Show All Registered Students");
+        System.out.println("7. Check Out Book");
+        System.out.println("8. Check In Book");
+        System.out.println("0. Exit");
+        System.out.println("Enter your choice: ");
+    }
+
     // Function to check if book already exists.
     public boolean compareBooks(Book b) {
         for (int i = 0; i < bookCount; i++) {
@@ -116,22 +130,7 @@ public class Books {
         System.out.println("Book Not Found!");
     }
 
-    // Function to display menu options.
-    public void menuOptions() {
-        System.out.println("Library Management System");
-        System.out.println("--------------------------------");
-        System.out.println("1. Add New Book");
-        System.out.println("2. Search Book by Serial Number");
-        System.out.println("3. Search Book by Author Name");
-        System.out.println("4. Display All Books");
-        System.out.println("5. Update Book Quantity");
-        System.out.println("6. Delete Book");
-        System.out.println("7. Exit");
-        System.out.println("--------------------------------");
-    }
-
-    // function
-
+    // function to check availability of book
     public int isAvailable(int sNo) {
 
         for (int i = 0; i < bookCount; i++) {
@@ -152,6 +151,7 @@ public class Books {
         return -1;
     }
 
+    // Function to check out the book
     public Book checkOutBook() {
 
         System.out.println(

@@ -13,6 +13,7 @@ public class Book {
         
         System.out.println("Enter Serial No of Book:");
         this.serialNumber = sc.nextInt();
+        sc.nextLine(); 
 
         System.out.println("Enter Book Name:");
         this.bookName = sc.nextLine();
